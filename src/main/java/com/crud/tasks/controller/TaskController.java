@@ -12,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequestMapping("/v1/tasks")
+@RequiredArgsConstructor
 public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
 
-    @Autowired
-    public TaskController(DbService service, TaskMapper taskMapper) {
-        this.service = service;
-        this.taskMapper = taskMapper;
-    }
+//    @Autowired
+//    public TaskController(DbService service, TaskMapper taskMapper) {
+//        this.service = service;
+//        this.taskMapper = taskMapper;
+//    }
     @GetMapping
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();

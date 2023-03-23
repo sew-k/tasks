@@ -5,15 +5,12 @@ import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.*;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/tasks")
 @RequiredArgsConstructor
@@ -21,11 +18,6 @@ public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
 
-//    @Autowired
-//    public TaskController(DbService service, TaskMapper taskMapper) {
-//        this.service = service;
-//        this.taskMapper = taskMapper;
-//    }
     @GetMapping
     public ResponseEntity<List<TaskDto>> getTasks() {
         List<Task> tasks = service.getAllTasks();

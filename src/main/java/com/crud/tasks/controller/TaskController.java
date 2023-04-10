@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/v1/tasks")
+@RequestMapping("/v1/task")
 @RequiredArgsConstructor
 public class TaskController {
     private final DbService service;

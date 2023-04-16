@@ -15,10 +15,4 @@ class TasksApplicationTests {
 	void contextLoads() {
 	}
 
-//	@Test
-//	void testGetTask() {
-//		//When&Then
-//		Assertions.assertEquals("test1", service.getTask(1).getContent());
-//	}
-
 }

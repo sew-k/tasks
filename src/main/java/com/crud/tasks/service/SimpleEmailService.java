@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Slf4j
+
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class SimpleEmailService {
 

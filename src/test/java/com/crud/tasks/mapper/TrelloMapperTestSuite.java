@@ -39,22 +39,37 @@ class TrelloMapperTestSuite {
         listOfTestLists2.add(testList3);
         listOfTestLists2.add(testList4);
         TrelloBoard testBoard2 = new TrelloBoard("2", "second test board", listOfTestLists2);
-
         testListOfBoards.add(testBoard1);
         testListOfBoards.add(testBoard2);
 
-        TrelloListDto testListDto1 = new TrelloListDto("1", "first test list", false);
-        TrelloListDto testListDto2 = new TrelloListDto("2", "second test list", true);
+        TrelloListDto testListDto1 = new TrelloListDto();
+        testListDto1.setId("1");
+        testListDto1.setName("first test list");
+        testListDto1.setClosed(false);
+        TrelloListDto testListDto2 = new TrelloListDto();
+        testListDto2.setId("2");
+        testListDto2.setName("second test list");
+        testListDto2.setClosed(true);
         listOfTestLists1Dto.add(testListDto1);
         listOfTestLists1Dto.add(testListDto2);
-        TrelloBoardDto testBoard1Dto = new TrelloBoardDto("1", "first test board", listOfTestLists1Dto);
-
-        TrelloListDto testListDto3 = new TrelloListDto("3", "third test list", false);
-        TrelloListDto testListDto4 = new TrelloListDto("4", "fourth test list", true);
+        TrelloBoardDto testBoard1Dto = new TrelloBoardDto();
+        testBoard1Dto.setId("1");
+        testBoard1Dto.setName("first test board");
+        testBoard1Dto.setLists(listOfTestLists1Dto);
+        TrelloListDto testListDto3 = new TrelloListDto();
+        testListDto3.setId("3");
+        testListDto3.setName("third test list");
+        testListDto3.setClosed(false);
+        TrelloListDto testListDto4 = new TrelloListDto();
+        testListDto4.setId("4");
+        testListDto4.setName("fourth test list");
+        testListDto4.setClosed(true);
         listOfTestLists2Dto.add(testListDto3);
         listOfTestLists2Dto.add(testListDto4);
-        TrelloBoardDto testBoard2Dto = new TrelloBoardDto("2", "second test board", listOfTestLists2Dto);
-
+        TrelloBoardDto testBoard2Dto = new TrelloBoardDto();
+        testBoard2Dto.setId("2");
+        testBoard2Dto.setName("second test board");
+        testBoard2Dto.setLists(listOfTestLists2Dto);
         testListOfBoardsDto.add(testBoard1Dto);
         testListOfBoardsDto.add(testBoard2Dto);
     }
@@ -68,8 +83,10 @@ class TrelloMapperTestSuite {
         Assertions.assertEquals(testListOfBoardsDto.size(), resultListOfBoards.size());
         Assertions.assertEquals(testListOfBoardsDto.get(0).getName(), resultListOfBoards.get(0).getName());
         Assertions.assertEquals(testListOfBoardsDto.get(0).getId(), resultListOfBoards.get(0).getId());
+        Assertions.assertEquals(testListOfBoardsDto.get(0).getLists().size(), resultListOfBoards.get(0).getLists().size());
         Assertions.assertEquals(testListOfBoardsDto.get(1).getName(), resultListOfBoards.get(1).getName());
         Assertions.assertEquals(testListOfBoardsDto.get(1).getId(), resultListOfBoards.get(1).getId());
+        Assertions.assertEquals(testListOfBoardsDto.get(1).getLists().size(), resultListOfBoards.get(1).getLists().size());
     }
     @Test
     void testMapToBoardsDto() {
@@ -92,8 +109,10 @@ class TrelloMapperTestSuite {
         Assertions.assertEquals(listOfTestLists1Dto.size(), resultListOfLists.size());
         Assertions.assertEquals(listOfTestLists1Dto.get(0).getName(), resultListOfLists.get(0).getName());
         Assertions.assertEquals(listOfTestLists1Dto.get(0).getId(), resultListOfLists.get(0).getId());
+        Assertions.assertEquals(listOfTestLists1Dto.get(0).isClosed(), resultListOfLists.get(0).isClosed());
         Assertions.assertEquals(listOfTestLists1Dto.get(1).getName(), resultListOfLists.get(1).getName());
         Assertions.assertEquals(listOfTestLists1Dto.get(1).getId(), resultListOfLists.get(1).getId());
+        Assertions.assertEquals(listOfTestLists1Dto.get(1).isClosed(), resultListOfLists.get(1).isClosed());
     }
     @Test
     void testMapToListDto() {
@@ -104,8 +123,10 @@ class TrelloMapperTestSuite {
         Assertions.assertEquals(listOfTestLists1.size(), resultListOfListsDto.size());
         Assertions.assertEquals(listOfTestLists1.get(0).getName(), resultListOfListsDto.get(0).getName());
         Assertions.assertEquals(listOfTestLists1.get(0).getId(), resultListOfListsDto.get(0).getId());
+        Assertions.assertEquals(listOfTestLists1.get(0).isClosed(), resultListOfListsDto.get(0).isClosed());
         Assertions.assertEquals(listOfTestLists1.get(1).getName(), resultListOfListsDto.get(1).getName());
         Assertions.assertEquals(listOfTestLists1.get(1).getId(), resultListOfListsDto.get(1).getId());
+        Assertions.assertEquals(listOfTestLists1.get(1).isClosed(), resultListOfListsDto.get(1).isClosed());
     }
     @Test
     void testMapToCardDto() {

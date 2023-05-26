@@ -1,12 +1,10 @@
 package com.crud.tasks.trello.facade;
 
-import com.crud.tasks.domain.TrelloBoard;
-import com.crud.tasks.domain.TrelloBoardDto;
-import com.crud.tasks.domain.TrelloList;
-import com.crud.tasks.domain.TrelloListDto;
+import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.validator.TrelloValidator;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -98,6 +98,20 @@ class TrelloFacadeTestSuite {
                 assertFalse(trelloListDto.isClosed());
             });
         });
+    }
+    @Test
+    void shouldReturnCreatedTrelloCardDto() {
+        //Given
+        TrelloCardDto trelloCardDto = new TrelloCardDto("1", "description", "2", "3");
+        TrelloCard trelloCard = new TrelloCard("1", "description", "2", "3");
+        when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
+        when(trelloMapper.mapToCardDto(trelloCard)).thenReturn(trelloCardDto);
+        when(trelloService.createTrelloCard(trelloCardDto)).thenReturn(new CreatedTrelloCardDto());
 
+        //When
+        Optional<CreatedTrelloCardDto> createdTrelloCardDto = Optional.ofNullable(trelloFacade.createCard(trelloCardDto));
+
+        //Then
+        assertTrue(createdTrelloCardDto.isPresent());
     }
 }

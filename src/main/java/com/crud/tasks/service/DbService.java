@@ -18,11 +18,11 @@ public class DbService {
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
-    public Task getTask(long taskId) {
-        return getAllTasks().stream()
-                .filter(t -> t.getId() == taskId)
-                .findAny().get();
-    }
+//    public Task getTask(long taskId) {
+//        return getAllTasks().stream()
+//                .filter(t -> t.getId() == taskId)
+//                .findAny().get();
+//    }
     public Task saveTask(final Task task) {
         return repository.save(task);
     }
